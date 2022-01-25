@@ -31,7 +31,7 @@ namespace VisualStudioFormUnitTestExampleTests
         {
             //VisualStudioFormUnitTestExample.ExampleClass1
             var tt = new ExampleClass1(10);
-            Assert.AreEqual(tt.value, 10);
+            Assert.AreEqual(tt.value, 11);
         }
     }
 }

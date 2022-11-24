@@ -3,10 +3,11 @@
 Example of MSTest for a WindowsForm project
 
 
-## Adding Tests to an Existing Windows Forms Project
+## Adding Tests to a 'Windows Forms App' Project
 
-* Create New Project -> `C#`, `Windows`, `Desktop` -> Windows Forms App -> .NET 5.0
-* Solution `WinFormsApp1` (1 of 1 project) -> Right CLick -> Add -> New Project -> "NUnit Test Project" or "MSTest Test Project" -> .Net 5.0
+* (if starting from scratch) Create New Project -> `C#`, `Windows`, `Desktop` -> Windows Forms App -> .NET X.X
+* `Solution WinFormsApp1 (1 of 1 project)` -> Right CLick -> Add -> New Project -> "NUnit Test Project" or "MSTest Test Project" -> .Net X.X
+    * This will add a `TestProject1`
 * `WinFormsApp1` -> Right Click -> Add -> Class
 * Add to `Class1.cs`
 * ```csharp
@@ -22,11 +23,12 @@ Example of MSTest for a WindowsForm project
     }
 	```
 	* note the addition of `public` to the class definition
-* TestProject1 -> Dependencies -> Right Click -> Add Project Reference -> `WinFormsApp1`
-* `TestProject1.csproj` -> manualy update `<TargetFramework>net5.0</TargetFramework>` to `<TargetFramework>net5.0-windows</TargetFramework>`
+* `TestProject1` -> Dependencies -> Right Click -> Add Project Reference -> `WinFormsApp1`
+* `.csproj` files should use the same `<TargetFramework>` (this is not done by default)
+    * In `TestProject1.csproj` -> replace `<TargetFramework>netX.X</TargetFramework>` with `<TargetFramework>netX.X-windows</TargetFramework>`
 * Add to `UnitTest1.cs`
 * ```csharp
-    using WinFormsApp3;
+    using WinFormsApp1;
 
         // ...
 
@@ -44,16 +46,18 @@ Notes
 -----
 
 * The above example add's a Test package to an existing Form program.
-	* This means the entire thing can only be tested on a windows system
-	* We would want CI (e.g. GitHub on commit to run these tests)
-* TODO: Make a demo of this stucture so the tests can run on CI (GitHub commit)
-	* Form (.netX.x-windows)
-		* Just view code
-	* Core (.netX.x)
-		* All the actual program logic
-	* Test (.netX.x)
-		* Testing `Core` (no need to engage with `Form`)
+	* This means the entire project can _only_ be tested on a windows system
+	* In future we would want CI (e.g. GitHub on commit to run these tests)
 
+View-Model-Test - 3 part project
+--------------
+* TODO: Make a demo of this structure so the tests can run on CI (GitHub commit)
+	* `Form` View (.netX.x-windows)
+		* The MINIMUM possible view code
+	* `Core` Model (.netX.x)
+		* All the actual program logic
+	* `Test` (.netX.x)
+		* Testing `Core` (no need to engage with `Form`)
 
 
 References
